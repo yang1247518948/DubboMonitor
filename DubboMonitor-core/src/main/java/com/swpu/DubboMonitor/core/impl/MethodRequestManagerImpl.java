@@ -16,7 +16,9 @@ public class MethodRequestManagerImpl implements MethodRequestManager
 
     @Autowired
     MethodRequestDao methodRequestDao;
-
+    public void start(){
+        System.out.println("hehehhehe !!");
+    }
     public List<MethodRequestDTO> getMethodListByRequestID(String requestId)
     {
         if (!StringUtils.isEmpty(requestId))

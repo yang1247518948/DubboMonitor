@@ -23,7 +23,7 @@
         <property name="ignoreUnresolvablePlaceholders" value="true" />
         <property name="locations">
             <list>
-                <value>classpath:properties/db.properties</value>
+                <value>classpath*:config/db.properties</value>
             </list>
         </property>
 	</bean>
