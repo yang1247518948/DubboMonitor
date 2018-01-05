@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.swpu.DubboMonitor.persist.dao.MethodDao">
+  <resultMap id="MethodInfoResultMap" type="com.swpu.DubboMonitor.persist.entity.MethodEntity">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="method_name" jdbcType="VARCHAR" property="methodName" />
+    <result column="class_name" jdbcType="VARCHAR" property="className" />
+    <result column="request_id" jdbcType="VARCHAR" property="requestId" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="run_time" jdbcType="INTEGER" property="runTime" />
+    <result column="parent_id" jdbcType="VARCHAR" property="parentId" />
+    <result column="thread_num" jdbcType="VARCHAR" property="threadNum" />
+    <result column="rpc_use" jdbcType="VARCHAR" property="rpcUse" />
+    <result column="result" jdbcType="VARCHAR" property="result" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="app_id" jdbcType="VARCHAR" property="appId" />
+    <result column="app_name" jdbcType="VARCHAR" property="appName" />
+    <result column="span" jdbcType="VARCHAR" property="span" />
+  </resultMap>
+  <sql id="Method_Column_List">
+    id, method_name, class_name, request_id, start_time, run_time, parent_id, thread_num, rpc_use,
+    result, create_time, update_time, app_id ,app_name,span
+  </sql>
+
+  <sql id="Params">
+      <if test="runTime!=null">
+            run_time > #{runTime,jdbcType=INTEGER}
+      </if>
+      <if test="methodName!=null and methodName!=''">
+            and method_name like concat('%',#{methodName,jdbcType=VARCHAR},'%')
+     </if>
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="MethodInfoResultMap">
+    select
+    <include refid="Method_Column_List" />
+    from methods
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from methods
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+
+<update id="updateByPrimaryKey" parameterType="com.swpu.DubboMonitor.persist.entity.MethodEntity">
+		update methods
+		set 
+		parent_id = #{parentId,jdbcType=VARCHAR},
+		update_time = NOW() 
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	
+  <insert id="insert" parameterType="com.swpu.DubboMonitor.persist.entity.MethodEntity">
+    insert into methods (id, method_name, class_name,
+      request_id, start_time, run_time,
+      parent_id, thread_num, rpc_use,
+      result, create_time, update_time,
+      app_id, app_name ,span)
+    values (#{id,jdbcType=VARCHAR}, #{methodName,jdbcType=VARCHAR}, #{className,jdbcType=VARCHAR},
+      #{requestId,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, #{runTime,jdbcType=INTEGER},
+      #{parentId,jdbcType=VARCHAR}, #{threadNum,jdbcType=VARCHAR}, #{rpcUse,jdbcType=VARCHAR},
+      #{result,jdbcType=VARCHAR}, NOW(), NOW(), #{appId,jdbcType=VARCHAR},#{appName,jdbcType=VARCHAR},#{span,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.swpu.DubboMonitor.persist.entity.MethodEntity">
+    insert into methods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="methodName != null">
+        method_name,
+      </if>
+      <if test="className != null">
+        class_name,
+      </if>
+      <if test="requestId != null">
+        request_id,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="runTime != null">
+        run_time,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="threadNum != null">
+        thread_num,
+      </if>
+      <if test="rpcUse != null">
+        rpc_use,
+      </if>
+      <if test="result != null">
+        result,
+      </if>
+      create_time,update_time,
+      <if test="appId != null">
+        app_id,
+      </if>
+      <if test="appName != null">
+        app_name,
+      </if>
+      <if test="span != null">
+        span,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="methodName != null">
+        #{methodName,jdbcType=VARCHAR},
+      </if>
+      <if test="className != null">
+        #{className,jdbcType=VARCHAR},
+      </if>
+      <if test="requestId != null">
+        #{requestId,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="runTime != null">
+        #{runTime,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="threadNum != null">
+        #{threadNum,jdbcType=VARCHAR},
+      </if>
+      <if test="rpcUse != null">
+        #{rpcUse,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null">
+        #{result,jdbcType=VARCHAR},
+      </if>
+      now(),now(),
+      <if test="appId != null">
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="appName != null">
+        #{appName,jdbcType=VARCHAR},
+      </if>
+       <if test="span != null">
+        #{span,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <insert id="insertBathMethod" parameterType="java.util.List">
+    insert into methods(id, method_name, class_name,
+      request_id, start_time, run_time,
+      parent_id, thread_num, rpc_use,
+      result, create_time, update_time,
+      app_id, app_name, span)
+    values
+    <foreach collection="list" item="methodEntity" index="index" separator=",">
+     (#{methodEntity.id,jdbcType=VARCHAR}, #{methodEntity.methodName,jdbcType=VARCHAR},
+      #{methodEntity.className,jdbcType=VARCHAR}, #{methodEntity.requestId,jdbcType=VARCHAR},
+      #{methodEntity.startTime,jdbcType=TIMESTAMP}, #{methodEntity.runTime,jdbcType=INTEGER},
+      #{methodEntity.parentId,jdbcType=VARCHAR}, #{methodEntity.threadNum,jdbcType=VARCHAR},
+      #{methodEntity.rpcUse,jdbcType=VARCHAR}, #{methodEntity.result,jdbcType=VARCHAR}, NOW(), NOW(),
+      #{methodEntity.appId,jdbcType=VARCHAR},#{methodEntity.appName,jdbcType=VARCHAR},#{methodEntity.span,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+
+  <select id="selectByParams" parameterType="java.util.HashMap" resultMap="MethodInfoResultMap">
+    select
+     <include refid="Method_Column_List" />
+     FROM
+     	methods
+     <where>
+         <include refid="Params" />
+     </where>
+      order by start_time desc
+      <if test="page!=null">
+          	limit #{offSet,jdbcType=INTEGER},#{count,jdbcType=INTEGER}
+         </if>
+        
+  </select>
+
+  <select id="selectCountAllMethodByParams" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+    select
+      count(*)
+     FROM
+     	methods
+     <where>
+          <include refid="Params" />
+     </where>
+  </select>
+  
+  <select id="selectBySpan" parameterType="java.lang.String" resultType="java.util.HashMap">
+    select
+        id,app_id
+     FROM
+     	methods
+    where request_id = #{requestId,jdbcType=VARCHAR} and span = #{span,jdbcType=VARCHAR}
+  </select>
+
+</mapper>

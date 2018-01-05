@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.swpu.DubboMonitor.persist.dao.RequestDao">
+
+	<resultMap id="RequestInfoResultMap"
+		type="com.swpu.DubboMonitor.persist.entity.RequestEntity">
+		<id column="request_id" property="requestId" jdbcType="VARCHAR" />
+		<id column="app_id" property="appId" jdbcType="VARCHAR" />
+		<result column="app_name" property="appName" jdbcType="VARCHAR" />
+		<result column="parent_id" property="parentId" jdbcType="VARCHAR" />
+		<result column="url" property="url" jdbcType="VARCHAR" />
+		<result column="request_method" property="requestMethod"
+			jdbcType="VARCHAR" />
+		<result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+		<result column="run_time" property="runTime" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="VARCHAR" />
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="span" jdbcType="VARCHAR" property="span" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		request_id, app_id, app_name, parent_id, url,
+		request_method, start_time,
+		run_time, user_id,create_time, update_time
+		,span
+	</sql>
+	<sql id="Commom_Param">
+		WHERE
+		1 = 1
+		<if test="beginTime !=null and beginTime != ''">
+			and start_time > #{beginTime,jdbcType=TIMESTAMP}
+		</if>
+		<if test="runTime !=null and run_time != ''">
+			and run_time &gt; #{runTime,jdbcType=INTEGER}
+		</if>
+		<if test="endTime !=null and endTime != ''">
+			and start_time &lt; #{endTime,jdbcType=TIMESTAMP}
+		</if>
+		<if test="url != null and url != ''">
+			and url = #{url,jdbcType=VARCHAR}
+		</if>
+		<if test="userId != null and userId != ''">
+			and user_id = #{userId,jdbcType=VARCHAR}
+		</if>
+		order by start_time desc
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="RequestInfoResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from requests
+		where request_id = #{requestId,jdbcType=VARCHAR} and
+		app_id = #{appId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		requests
+		where request_id = #{requestId,jdbcType=VARCHAR} and app_id =
+		#{appId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.swpu.DubboMonitor.persist.entity.RequestEntity">
+		insert into requests
+		(request_id, app_id, app_name,
+		parent_id, url, request_method,
+		start_time, run_time, user_id,create_time, update_time,span)
+		values
+		(#{requestId,jdbcType=VARCHAR},
+		#{appId,jdbcType=VARCHAR},
+		#{appName,jdbcType=VARCHAR},
+		#{parentId,jdbcType=VARCHAR},
+		#{url,jdbcType=VARCHAR},
+		#{requestMethod,jdbcType=VARCHAR},
+		#{startTime,jdbcType=TIMESTAMP},
+		#{runTime,jdbcType=INTEGER},
+		#{userId,jdbcType=VARCHAR},
+		NOW(),NOW()),
+		#{span,jdbcType=VARCHAR},
+	</insert>
+	<insert id="insertSelective" parameterType="com.swpu.DubboMonitor.persist.entity.RequestEntity">
+		insert into requests
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="requestId != null">
+				request_id,
+			</if>
+			<if test="appId != null">
+				app_id,
+			</if>
+			<if test="appName != null">
+				app_name,
+			</if>
+			<if test="parentId != null">
+				parent_id,
+			</if>
+			<if test="url != null">
+				url,
+			</if>
+			<if test="requestMethod != null">
+				request_method,
+			</if>
+			<if test="startTime != null">
+				start_time,
+			</if>
+			<if test="runTime != null">
+				run_time,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="span != null">
+				span,
+			</if>
+			create_time, update_time
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="requestId != null">
+				#{requestId,jdbcType=VARCHAR},
+			</if>
+			<if test="appId != null">
+				#{appId,jdbcType=VARCHAR},
+			</if>
+			<if test="appName != null">
+				#{appName,jdbcType=VARCHAR},
+			</if>
+			<if test="parentId != null">
+				#{parentId,jdbcType=VARCHAR},
+			</if>
+			<if test="url != null">
+				#{url,jdbcType=VARCHAR},
+			</if>
+			<if test="requestMethod != null">
+				#{requestMethod,jdbcType=VARCHAR},
+			</if>
+			<if test="startTime != null">
+				#{startTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="runTime != null">
+				#{runTime,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="span != null">
+				#{span,jdbcType=VARCHAR},
+			</if>
+			NOW(),NOW()
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.swpu.DubboMonitor.persist.entity.RequestEntity">
+		update requests
+		<set>
+			<if test="appName != null">
+				app_name = #{appName,jdbcType=VARCHAR},
+			</if>
+			<if test="parentId != null">
+				parent_id = #{parentId,jdbcType=VARCHAR},
+			</if>
+			<if test="url != null">
+				url = #{url,jdbcType=VARCHAR},
+			</if>
+			<if test="requestMethod != null">
+				request_method = #{requestMethod,jdbcType=VARCHAR},
+			</if>
+			<if test="time != null">
+				start_time = #{startTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="run_time != null">
+				run_time = #{runTime,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="span != null">
+				span = #{span,jdbcType=VARCHAR},
+			</if>
+			NOW(),NOW()
+		</set>
+		where request_id = #{requestId,jdbcType=VARCHAR} and app_id =
+		#{appId,jdbcType=VARCHAR};
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.swpu.DubboMonitor.persist.entity.RequestEntity">
+		update requests
+		set
+		app_name = #{appName,jdbcType=VARCHAR},
+		parent_id =
+		#{parentId,jdbcType=VARCHAR},
+		url = #{url,jdbcType=VARCHAR},
+		request_method =
+		#{requestMethod,jdbcType=VARCHAR},
+		start_time =
+		#{startTime,jdbcType=TIMESTAMP},
+		run_time =
+		#{runTime,jdbcType=INTEGER},
+		user_id = #{userId,jdbcType=VARCHAR},
+		span
+		= #{span,jdbcType=VARCHAR}
+		where request_id = #{requestId,jdbcType=VARCHAR} and app_id =
+		#{appId,jdbcType=VARCHAR}
+	</update>
+	<insert id="insertBatch" parameterType="java.util.List">
+		insert into requests(
+		request_id, app_id, app_name, parent_id, url,
+		request_method, start_time,
+		run_time, user_id,create_time,
+		update_time,span)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(
+			#{item.requestId,jdbcType=VARCHAR},
+			#{item.appId,jdbcType=VARCHAR},
+			#{item.appName,jdbcType=VARCHAR},
+			#{item.parentId,jdbcType=VARCHAR},
+			#{item.url,jdbcType=VARCHAR},
+			#{item.requestMethod,jdbcType=VARCHAR},
+			#{item.startTime,jdbcType=TIMESTAMP},
+			#{item.runTime,jdbcType=INTEGER},
+			#{item.userId,jdbcType=VARCHAR},
+			NOW(),NOW(),
+			#{item.span,jdbcType=VARCHAR}
+			)
+		</foreach>
+	</insert>
+	<select id="queryRequestByParams" resultMap="RequestInfoResultMap"
+		parameterType="java.util.HashMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+		requests
+		<include refid="Commom_Param"></include>
+		<if test="page != null and count != null">
+			limit #{page},#{count}
+		</if>
+	</select>
+	<select id="countAllRequestsByParams" resultType="java.lang.Integer"
+		parameterType="java.util.HashMap">
+		SELECT
+		COUNT(request_id)
+		FROM
+		requests
+		<include refid="Commom_Param"></include>
+	</select>
+
+	<!-- <select id="selectByAppId" resultType="java.lang.String" parameterType="java.lang.String"> 
+		select app_name from requests where <where> <if test="app_id != null and 
+		app_id !=''"> app_id=#{appId,jdbcType=VARCHAR} </if> </where> </select> -->
+</mapper>

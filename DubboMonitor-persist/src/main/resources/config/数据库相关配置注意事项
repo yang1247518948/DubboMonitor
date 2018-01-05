@@ -1,0 +1,50 @@
+1、数据库相关配置
+	数据库相关配置都放在该目录下
+	如：事务
+		数据源
+		mapper配置加载
+2、事务（按照实际情况修改）
+	例：
+		<tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+			<tx:attributes>
+				<!-- 这些开头的方法 设为只读事务 -->
+				<tx:method name="get*" read-only="true" />
+				<tx:method name="find*" read-only="true" />
+				<tx:method name="login*" read-only="true" />
+				<tx:method name="query*" read-only="true" />
+	
+				<!-- 这些开头的方法 设为REQUIRED 如果存在一个事务 ，则支看当前事务。 如果没有则开启一个新事务 设为supports时 如果存在一个事务 
+					，则支看当前事务。如果没有则安非事务处理 delete -->
+				<tx:method name="add*" propagation="REQUIRED" />
+				<tx:method name="save*" propagation="REQUIRED" />
+				<tx:method name="delete*" propagation="REQUIRED" />
+				<tx:method name="del*" propagation="REQUIRED" />
+				<tx:method name="update*" propagation="REQUIRED" />
+				<tx:method name="modify*" propagation="REQUIRED" />
+				<tx:method name="remove*" propagation="REQUIRED" />
+				<tx:method name="do*" propagation="REQUIRED" />
+				<tx:method name="regsiter*" propagation="REQUIRED" />
+				<tx:method name="create*" propagation="REQUIRED" />
+				<tx:method name="*" read-only="true" />
+	
+			</tx:attributes>
+		</tx:advice>
+		
+3、参数的引用
+	spring-mybatis.xml配置文件中需要引用的参数只能通过db.properties文件，通过Matrix平台进行配置管理，加载与配置方式如下
+	
+	例：
+		${connection_pools.min_pool_size}
+	
+	例：db.properties内容如下：
+	
+		jdbc.driver   = com.mysql.jdbc.Driver
+		jdbc.url      = jdbc:mysql://db.idanlu.com:3406/dluser?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+		jdbc.username = root
+		jdbc.password = idanlu
+		connection_pools.initial_pool_size = 5
+		connection_pools.min_pool_size     = 5
+		connection_pools.max_pool_size     = 10
+		connection_pools.max_idle_time     = 600
+		connection_pools.acquire_increment = 5
+		connection_pools.checkout_timeout  = 60000
