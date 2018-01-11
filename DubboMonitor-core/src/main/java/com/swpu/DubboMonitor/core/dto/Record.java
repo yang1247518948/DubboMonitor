@@ -1,8 +1,14 @@
 package com.swpu.DubboMonitor.core.dto;
 
+import java.io.Serializable;
 
-public class Record {
-	private String traceID;
+
+public class Record implements Serializable{
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    private String traceID;
 	private String span;
 	private long time;
 	private String className;

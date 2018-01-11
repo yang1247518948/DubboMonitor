@@ -2,8 +2,7 @@ package com.swpu.DubboMonitor.vo;
 
 /**
  * 返回给前端的对象
- * @author: zhaoyan
- * @Date:2017年12月7日
+ * @author: dengyu
  */
 public class ResultVO {
 	 //错误码

@@ -9,7 +9,6 @@ import com.swpu.DubboMonitor.persist.entity.MethodEntity;
 /**
  * MethodDao
  * @author: dengyu  
- * @Date: 2017年11月14日
  */
 public interface MethodDao {
     /** 

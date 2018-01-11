@@ -4,8 +4,7 @@ import com.swpu.DubboMonitor.vo.ResultVO;
 
 /**
  * 返回前端数据的工具类
- * @author: zhaoyan
- * @Date:2017年11月27日
+ * @author: dengyu
  */
 public class ResultUtil
 {

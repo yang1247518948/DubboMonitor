@@ -6,9 +6,9 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,7 +21,6 @@ import com.swpu.DubboMonitor.vo.ResultVO;
 /**
  * 方法的数据获取
  * @author: dengyu
- * @Date:2017年11月27日
  */
 @Controller
 @RequestMapping("/method")
@@ -44,11 +43,11 @@ public class MethodController
         {
             Map<String, Object> map = new HashMap<String, Object>();
             String page = request.getParameter("page");
-            if (!StringUtils.isBlank(page))
+            if (!StringUtils.isEmpty(page))
             {
                 map.put("page", Integer.parseInt(page));
                 int count;
-                if (!StringUtils.isBlank(request.getParameter("count")))
+                if (!StringUtils.isEmpty(request.getParameter("count")))
                 {
                     count = Integer.parseInt(request.getParameter("count"));
                 }
@@ -68,11 +67,11 @@ public class MethodController
                 }
                 String methodName = request.getParameter("methodName");
                 String runTime = request.getParameter("runTime");
-                if (!StringUtils.isBlank(methodName))
+                if (!StringUtils.isEmpty(methodName))
                 {
                     map.put("methodName", methodName);
                 }
-                if (!StringUtils.isBlank(runTime))
+                if (!StringUtils.isEmpty(runTime))
                 {
                     map.put("runTime", Integer.parseInt(runTime));
                 }

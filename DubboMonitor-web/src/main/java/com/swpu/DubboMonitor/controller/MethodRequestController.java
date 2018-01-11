@@ -2,10 +2,10 @@ package com.swpu.DubboMonitor.controller;
 
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,8 +17,7 @@ import com.swpu.DubboMonitor.vo.ResultVO;
 
 /**
  * 方法链的数据
- * @author: zhaoyan
- * @Date:2017年11月27日
+ * @author: dengyu
  */
 @Controller
 @RequestMapping("/methodRequest")

@@ -7,7 +7,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 /**
  * 数据清洗的全局变量类
  * @author dengyu
- * @Date:2017年11月22日
  */
 public class WasherGobal
 {

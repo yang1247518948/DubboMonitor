@@ -6,8 +6,7 @@ import com.swpu.DubboMonitor.persist.entity.MethodRequestEntity;
 
 /**
  * MethodRequestDao
- * @author: zhaoyan  
- * @Date: 2017年11月14日
+ * @author: dengyu
  */
 public interface MethodRequestDao
 {

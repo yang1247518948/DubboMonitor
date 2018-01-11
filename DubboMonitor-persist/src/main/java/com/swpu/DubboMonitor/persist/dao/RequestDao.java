@@ -7,8 +7,7 @@ import com.swpu.DubboMonitor.persist.entity.RequestEntity;
 
 /**
  *  RequestDao
- * @author: zhaoyan  
- * @Date: 2017年11月14日
+ * @author: dengyu  
  */
 public interface RequestDao
 {

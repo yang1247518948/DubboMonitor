@@ -8,7 +8,6 @@ import com.swpu.DubboMonitor.core.dto.MethodDTO;
 /**
  * 查询方法的接口
  * @author: dengyu 
- * @Date:2017年11月22日
  */
 public interface MethodService {
     /** 

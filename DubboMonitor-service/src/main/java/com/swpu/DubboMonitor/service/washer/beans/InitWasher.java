@@ -13,9 +13,7 @@ import com.swpu.DubboMonitor.service.washer.WashThread;
 
 /**
  * 查询方法链的接口
- * @Copyright: 丹露
  * @author: dengyu
- * @Date:2017年11月13日
  */
 public class InitWasher
 {

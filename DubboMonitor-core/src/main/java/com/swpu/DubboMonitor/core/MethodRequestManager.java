@@ -5,8 +5,7 @@ import com.swpu.DubboMonitor.core.dto.MethodRequestDTO;
 
 /**
  * MethodRequestManager
- * @author: zhaoyan  
- * @Date: 2017年11月15日
+ * @author: dengyu
  */
 public interface MethodRequestManager
 {

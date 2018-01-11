@@ -2,8 +2,6 @@ package com.swpu.DubboMonitor.service.washer;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import com.alibaba.fastjson.TypeReference;
 import com.swpu.DubboMonitor.core.MethodManager;
 import com.swpu.DubboMonitor.core.RequestManager;
 import com.swpu.DubboMonitor.core.dto.MethodTemp;
@@ -11,11 +9,11 @@ import com.swpu.DubboMonitor.core.dto.RequestTemp;
 import com.swpu.DubboMonitor.core.util.TransferUtil;
 import com.swpu.DubboMonitor.core.dto.Record;
 import com.swpu.DubboMonitor.service.common.WasherGobal;
+import com.swpu.DubboMonitor.service.util.RedisUtil;
 
 /**
  * 数据清洗函数类
  * @author: dengyu
- * @Date:2017年11月22日
  */
 public class DataWasher
 {
@@ -36,16 +34,16 @@ public class DataWasher
         boolean flag=false;
         String span = record.getSpan();
         String traceID = record.getTraceID();
-        if (codisService.exists(traceID))
+        if (RedisUtil.exists(traceID))
         {
-            temp = codisService.hget(traceID, span, new TypeReference<MethodTemp>(){});
+            temp = (MethodTemp)RedisUtil.hget(traceID, span);
             if (temp != null)
             {
                 int index = span.lastIndexOf('.');
                 if (index != -1 && span.substring(0, index).indexOf('.') != -1)
                 {
                     String parentSpan = span.substring(0, index);
-                    MethodTemp tempParen = codisService.hget(traceID, parentSpan,new TypeReference<MethodTemp>(){});
+                    MethodTemp tempParen = (MethodTemp)RedisUtil.hget(traceID, parentSpan);
                     if (tempParen != null)
                     {
                         temp.setParentId(tempParen.getId());
@@ -69,13 +67,13 @@ public class DataWasher
             }
             else
             {
-                codisService.hset(traceID, span, TransferUtil.recordToMethodTemp(record));
+                RedisUtil.hset(traceID, span, TransferUtil.recordToMethodTemp(record));
             }
         }
         else
         {
-            codisService.hset(traceID, span, TransferUtil.recordToMethodTemp(record));
-            codisService.expire(traceID, WasherGobal.CACHE_TIME_OUT);
+            RedisUtil.hset(traceID, span, TransferUtil.recordToMethodTemp(record));
+            RedisUtil.expire(traceID, WasherGobal.CACHE_TIME_OUT);
         }
     }
 
@@ -90,15 +88,15 @@ public class DataWasher
         String span = record.getSpan();
         boolean flag = false;
         String traceID = record.getTraceID();
-        if (codisService.exists(traceID))
+        if (RedisUtil.exists(traceID))
         {
-            temp = codisService.hget(traceID, span, new TypeReference<RequestTemp>(){});
+            temp = (RequestTemp)RedisUtil.hget(traceID, span);
             if (temp != null)
             {
                 if (span.indexOf('.') != -1)
                 {
                     span = span.substring(4);
-                    MethodTemp tempParen = codisService.hget(traceID, span,new TypeReference<MethodTemp>(){});
+                    MethodTemp tempParen = (MethodTemp)RedisUtil.hget(traceID, span);
                     if (tempParen != null)
                     {
                         temp.setParentId(tempParen.getAppId());
@@ -118,13 +116,13 @@ public class DataWasher
             }
             else
             {
-                codisService.hset(traceID, span, TransferUtil.recordToRequesTemp(record));
+                RedisUtil.hset(traceID, span, TransferUtil.recordToRequesTemp(record));
             }
         }
         else
         {
-            codisService.hset(traceID, span, TransferUtil.recordToRequesTemp(record));
-            codisService.expire(traceID, WasherGobal.CACHE_TIME_OUT);
+            RedisUtil.hset(traceID, span, TransferUtil.recordToRequesTemp(record));
+            RedisUtil.expire(traceID, WasherGobal.CACHE_TIME_OUT);
         }
     }
 }

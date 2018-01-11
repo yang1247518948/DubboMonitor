@@ -5,8 +5,7 @@ import com.swpu.DubboMonitor.core.dto.MethodRequestDTO;
 
 /**
  * 查询方法链的接口
- * @author: zhaoyan
- * @Date:2017年11月13日
+ * @author: dengyu
  */
 public interface MethodRequestService
 {

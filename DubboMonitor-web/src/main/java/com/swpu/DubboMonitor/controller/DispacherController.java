@@ -8,8 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * 页面跳转控制器
- * @author: zhaoyan
- * @Date:2017年11月27日
+ * @author: dengyu
  */
 @Controller
 public class DispacherController
@@ -22,6 +21,16 @@ public class DispacherController
     @RequestMapping(value = "/indexPage")
     public ModelAndView toIndexPage(){
         ModelAndView mav = new ModelAndView("index");
+        return mav;
+    }
+    
+    /** 
+     * 跳转到錯誤業
+     * @return ModelAndView
+     */
+    @RequestMapping(value = "/noFound")
+    public ModelAndView toNotFound(){
+        ModelAndView mav = new ModelAndView("notFound");
         return mav;
     }
     

@@ -2,9 +2,11 @@ package com.swpu.DubboMonitor.core.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.commons.lang.StringUtils;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
+
 import com.swpu.DubboMonitor.core.MethodRequestManager;
 import com.swpu.DubboMonitor.core.dto.MethodRequestDTO;
 import com.swpu.DubboMonitor.core.util.TransferUtil;

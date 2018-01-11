@@ -7,7 +7,6 @@ import com.swpu.DubboMonitor.core.dto.Record;
 /**
  * 线程类
  * @author: dengyu
- * @Date:2017年11月22日
  */
 public class WashThread implements Runnable
 {

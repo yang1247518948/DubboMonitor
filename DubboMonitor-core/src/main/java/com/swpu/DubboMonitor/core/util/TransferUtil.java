@@ -13,8 +13,7 @@ import com.swpu.DubboMonitor.core.dto.Record;
 
 /**
  * DTO和Entity的转换工具类
- * @author: zhaoyan  
- * @Date: 2017年11月11日
+ * @author: dengyu  
  */
 public class TransferUtil
 {

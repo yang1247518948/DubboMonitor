@@ -7,7 +7,6 @@ import com.swpu.DubboMonitor.core.dto.MethodTemp;
 /**
  * MethodManager
  * @author: dengyu  
- * @Date: 2017年11月15日
  */
 public interface MethodManager {
     

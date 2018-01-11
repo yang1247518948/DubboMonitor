@@ -1,9 +1,15 @@
 package com.swpu.DubboMonitor.core.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class RequestTemp
+public class RequestTemp implements Serializable
 {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     private String requestId;
 
     private String appId;

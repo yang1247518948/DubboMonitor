@@ -5,8 +5,7 @@ import java.util.Map;
 
 /**
  * 生成颜色的容器
- * @author: zhaoyan  
- * @Date: 2017年11月25日
+ * @author: dengyu 
  */
 public class ColorContainer
 {

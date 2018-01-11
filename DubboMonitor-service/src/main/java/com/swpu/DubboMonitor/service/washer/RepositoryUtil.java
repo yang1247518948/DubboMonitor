@@ -3,20 +3,16 @@ package com.swpu.DubboMonitor.service.washer;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-
 import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
-
-import com.alibaba.fastjson.TypeReference;
 import com.swpu.DubboMonitor.core.dto.Record;
 import com.swpu.DubboMonitor.service.common.WasherGobal;
+import com.swpu.DubboMonitor.service.util.RedisUtil;
 
 
 /**
  * 工厂类，主要用来获取日志
  * @author: dengyu
- * @Date:2017年11月22日
  */
 public class RepositoryUtil
 {
@@ -79,7 +75,7 @@ public class RepositoryUtil
         Record record = null;
         while (flag)
         {
-            record = codisSerivce.listLeftPop(WasherGobal.KEY_DLMONTITOR,new TypeReference<Record>(){});
+            record = (Record)RedisUtil.listLeftPop(WasherGobal.KEY_DLMONTITOR);
             if (record != null)
             {
                 synchronized (RepositoryUtil.class)

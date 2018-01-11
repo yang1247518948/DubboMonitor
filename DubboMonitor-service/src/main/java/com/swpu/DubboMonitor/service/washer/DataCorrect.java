@@ -17,7 +17,6 @@ import com.swpu.DubboMonitor.service.common.WasherGobal;
 /**
  * 数据修正函数类
  * @author: dengyu
- * @Date:2017年12月7日
  */
 @Component
 public class DataCorrect 

@@ -25,8 +25,8 @@
 </div>
 	<div id="footer">
     <p>Copyright ©  All Rights Reserved.</p>
-    <p>丹露成都技术有限公司 版权所有</p>
-    <p>四川省 成都市 高新区环球中心E1-1804</p>
+    <p>西南石油大学计科院 版权所有</p>
+    <p>四川省 成都市 新都大道8号</p>
 </footer>
 </body>
 <script type="text/javascript">

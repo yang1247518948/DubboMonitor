@@ -6,10 +6,10 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,8 +21,7 @@ import com.swpu.DubboMonitor.vo.ResultVO;
 
 /**
  * 请求的数据获取
- * @author: zhaoyan
- * @Date:2017年11月27日
+ * @author: dengyu
  */
 @Controller
 @RequestMapping("/request")
@@ -50,27 +49,27 @@ public class RequestController
         String userId = request.getParameter("userId");
         String url = request.getParameter("url");
         
-        if (StringUtils.isBlank(page))
+        if (StringUtils.isEmpty(page))
         {
             return ResultUtil.failure(-1, "参数错误");
         }
-        if (!StringUtils.isBlank(beginTime))
+        if (!StringUtils.isEmpty(beginTime))
         {
             params.put("beginTime", beginTime);
         }
-        if (!StringUtils.isBlank(runTime))
+        if (!StringUtils.isEmpty(runTime))
         {
             params.put("runTime", runTime);
         }
-        if (!StringUtils.isBlank(endTime))
+        if (!StringUtils.isEmpty(endTime))
         {
             params.put("endTime",  endTime);
         }
-        if (!StringUtils.isBlank(userId))
+        if (!StringUtils.isEmpty(userId))
         {
             params.put("userId", userId);
         }
-        if (!StringUtils.isBlank(url))
+        if (!StringUtils.isEmpty(url))
         {
             params.put("url", url);
         }

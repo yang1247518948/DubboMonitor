@@ -9,8 +9,7 @@ import com.swpu.DubboMonitor.persist.entity.RequestEntity;
 
 /**
  * RequestManager
- * @author: zhaoyan
- * @Date: 2017年11月15日
+ * @author: dengyu
  */
 public interface RequestManager
 {

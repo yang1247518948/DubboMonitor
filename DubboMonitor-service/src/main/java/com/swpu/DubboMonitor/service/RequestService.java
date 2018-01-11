@@ -7,8 +7,7 @@ import com.swpu.DubboMonitor.core.dto.RequestDTO;
 
 /**
  * 查询请求的接口
- * @author: zhaoyan
- * @Date:2017年11月22日
+ * @author: dengyu
  */
 public interface RequestService
 {

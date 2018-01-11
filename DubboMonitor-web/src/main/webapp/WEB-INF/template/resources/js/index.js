@@ -1,6 +1,3 @@
-/**
- * Created by zyy on 2017/11/16.
- */
 window.onload = function() {
 
     (function() {
@@ -91,7 +88,7 @@ window.onload = function() {
                    	this.re.beginTime = startTime;  // 开始时间
                     this.re.endTime = endtime;   // 结束时间
                     var formData = this.re;  // 提交的表单数据
-                    this.$http.get("/dlmonitor-web/request/getRequestInfoList?page=1", formData)
+                    this.$http.get("/DubboMonitor-web/request/getRequestInfoList?page=1", formData)
                     .then(function(res){
                         var arr=res.data;  // 返回obj
                         this.page = arr.page;// 返回跳转到第几页
@@ -130,7 +127,7 @@ window.onload = function() {
                             this.err = " 未获取错误!"
                         }
                     },function(res){
-                        window.location.href='../../notFound.ftl';
+                    	window.location.href='../../notFound.html';
                     })
                 }
             },
@@ -140,7 +137,7 @@ window.onload = function() {
                 requ.style.display = "none";
                 meth.style.display = "block" ;
                 var formData = this.me; // 提交的表单数据
-                this.$http.get("/dlmonitor-web/method/getMethodInfoList?page=1",formData )
+                this.$http.get("/DubboMonitor-web/method/getMethodInfoList?page=1",formData )
                     .then(function(res){
                         var arr=res.data;  // 返回obj
                         this.count2 = arr.count;
@@ -182,7 +179,7 @@ window.onload = function() {
                             this.errmsg = " 未获取错误!"
                         }
                 },function(res){
-                        window.location.href='../../notFound.ftl';
+                	window.location.href='../../notFound.html';
                 });
             },
 
@@ -197,7 +194,7 @@ window.onload = function() {
                     this.errmsg ="没有填写页数，不能跳转！";
                 }else{
                 	var FormData = this.re;
-                    this.$http.get("/dlmonitor-web/request/getRequestInfoList?page="+n,FormData)
+                    this.$http.get("/DubboMonitor-web/request/getRequestInfoList?page="+n,FormData)
                     .then(function(res){
                         var arr = res.data;  // 返回obj
                         if(arr.code==0) {
@@ -242,7 +239,7 @@ window.onload = function() {
                             this.num = 0;// 返回请求总页数
                         }
                         },function(){
-                        window.location.href='../../notFound.ftl';
+                        	window.location.href='../../notFound.html';
                         })
 
                 }
@@ -270,7 +267,7 @@ window.onload = function() {
                     this.errmsg ="没有填写页数，不能跳转！";
                 }else{
                 	    var FormData = this.me;
-                    this.$http.get("/dlmonitor-web/method/getMethodInfoList?page="+n,FormData).then(function(res){
+                    this.$http.get("/DubboMonitor-web/method/getMethodInfoList?page="+n,FormData).then(function(res){
                         var arr=res.data;  // 返回obj
                         if(arr.code==0){
                             this.count2 = arr.count;
@@ -321,7 +318,7 @@ window.onload = function() {
                             this.num2 = 0;// 返回请求总页数
                         }
                     },function(){
-                        window.location.href='../../notFound.ftl';
+                    	window.location.href='../../notFound.html';
                     });
                 }
 
