@@ -1,8 +1,11 @@
 package com.swpu.DubboMonitor.record;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+
 
 /**
  * 数据缓冲区以及写入类
@@ -24,7 +27,7 @@ public class Collector {
 	private static WriteThread writeThread = new WriteThread();
 	private static boolean isStart = false;
 
-
+	private static RedisUtil redis;
 	static {
 		writeQueue = bufferOne;
 		readQueue = bufferTwo;
@@ -45,13 +48,13 @@ public class Collector {
 	public static void write(){
 		try {
 			if (!isStart) {
-//				try {
-//					//initService();
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//					stopFlag = true;
-//					return;
-//				}
+				try {
+					initService();
+				} catch (Exception e) {
+					e.printStackTrace();
+					stopFlag = true;
+					return;
+				}
 				new Thread(writeThread).start();
 				isStart = true;
 			}
@@ -60,7 +63,11 @@ public class Collector {
 		}
 
 	}
-
+	private static void initService() throws Exception {
+        if (redis==null) {
+            redis = new RedisUtil();
+        }
+    }
 	/**
 	 * 添加一条标准调用日志
 	 * @param record 记录实例
@@ -97,7 +104,7 @@ public class Collector {
 				}
 
 				while (!readQueue.isEmpty()){
-					RedisUtil.listRightPush(CODIS_KEY,readQueue.poll());
+					redis.listRightPush(CODIS_KEY,readQueue.poll());
 				}
 
 				if(writeToOne){

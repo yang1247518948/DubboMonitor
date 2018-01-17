@@ -46,7 +46,7 @@ public class BeanUtils
                             }
                             break;
                         }
-                        catch (Exception e)
+                        catch (NoSuchMethodException e)
                         {
                             e.printStackTrace();
                             continue;

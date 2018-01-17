@@ -3,8 +3,11 @@ package com.swpu.DubboMonitor.service.washer;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
+
 import com.swpu.DubboMonitor.core.dto.Record;
 import com.swpu.DubboMonitor.service.common.WasherGobal;
 import com.swpu.DubboMonitor.service.util.RedisUtil;
@@ -20,7 +23,8 @@ public class RepositoryUtil
     public HashSet<String> keySets = new HashSet<String>();
     public List<Record> records = new ArrayList<Record>();
     
-
+    @Autowired
+    private RedisUtil redis;
     /** 
      * 遍历list，如果没有冲突，返回一条日志，如果有就从codis中取出一条日志返回
      * @return Record
@@ -75,7 +79,7 @@ public class RepositoryUtil
         Record record = null;
         while (flag)
         {
-            record = (Record)RedisUtil.listLeftPop(WasherGobal.KEY_DLMONTITOR);
+            record = (Record)redis.listLeftPop(WasherGobal.KEY_DLMONTITOR);
             if (record != null)
             {
                 synchronized (RepositoryUtil.class)
@@ -98,7 +102,7 @@ public class RepositoryUtil
             }
             else
             {
-                Thread.sleep(100);
+                Thread.sleep(200);
             }
         }
         return record;

@@ -19,12 +19,12 @@
 	                    
 
 	<context:component-scan base-package="com.swpu.DubboMonitor.service" />
-	<!--  <task:executor id="executor" pool-size="5" />  
+	<task:executor id="executor" pool-size="5" />  
     <task:scheduler id="scheduler" pool-size="10" />  
     <task:annotation-driven executor="executor" scheduler="scheduler" />
 	<bean id="dataCorrect" class="com.swpu.DubboMonitor.service.washer.DataCorrect" />  
 	<bean id="dataWasher" class="com.swpu.DubboMonitor.service.washer.DataWasher" />      
 	<bean id="repositoryUtil" class="com.swpu.DubboMonitor.service.washer.RepositoryUtil" /> 
 	<bean id="initThread" class="com.swpu.DubboMonitor.service.washer.beans.InitWasher" init-method="begin" />
--->
+	<bean id="initRedis" class="com.swpu.DubboMonitor.service.util.RedisUtil" init-method="getJedis"></bean>
 </beans>

@@ -23,7 +23,8 @@ public class DataWasher
     @Autowired
     RequestManager requestManager;
 
-
+    @Autowired
+    RedisUtil redis;
     /** 
      * 处理方法打印的日志
      * @param Reocrd(日志)
@@ -34,16 +35,16 @@ public class DataWasher
         boolean flag=false;
         String span = record.getSpan();
         String traceID = record.getTraceID();
-        if (RedisUtil.exists(traceID))
+        if (redis.exists(traceID))
         {
-            temp = (MethodTemp)RedisUtil.hget(traceID, span);
+            temp = (MethodTemp)redis.hget(traceID, span);
             if (temp != null)
             {
                 int index = span.lastIndexOf('.');
                 if (index != -1 && span.substring(0, index).indexOf('.') != -1)
                 {
                     String parentSpan = span.substring(0, index);
-                    MethodTemp tempParen = (MethodTemp)RedisUtil.hget(traceID, parentSpan);
+                    MethodTemp tempParen = (MethodTemp)redis.hget(traceID, parentSpan);
                     if (tempParen != null)
                     {
                         temp.setParentId(tempParen.getId());
@@ -67,13 +68,13 @@ public class DataWasher
             }
             else
             {
-                RedisUtil.hset(traceID, span, TransferUtil.recordToMethodTemp(record));
+                redis.hset(traceID, span, TransferUtil.recordToMethodTemp(record));
             }
         }
         else
         {
-            RedisUtil.hset(traceID, span, TransferUtil.recordToMethodTemp(record));
-            RedisUtil.expire(traceID, WasherGobal.CACHE_TIME_OUT);
+            redis.hset(traceID, span, TransferUtil.recordToMethodTemp(record));
+            redis.expire(traceID, WasherGobal.CACHE_TIME_OUT);
         }
     }
 
@@ -88,15 +89,15 @@ public class DataWasher
         String span = record.getSpan();
         boolean flag = false;
         String traceID = record.getTraceID();
-        if (RedisUtil.exists(traceID))
+        if (redis.exists(traceID))
         {
-            temp = (RequestTemp)RedisUtil.hget(traceID, span);
+            temp = (RequestTemp)redis.hget(traceID, span);
             if (temp != null)
             {
                 if (span.indexOf('.') != -1)
                 {
                     span = span.substring(4);
-                    MethodTemp tempParen = (MethodTemp)RedisUtil.hget(traceID, span);
+                    MethodTemp tempParen = (MethodTemp)redis.hget(traceID, span);
                     if (tempParen != null)
                     {
                         temp.setParentId(tempParen.getAppId());
@@ -116,13 +117,13 @@ public class DataWasher
             }
             else
             {
-                RedisUtil.hset(traceID, span, TransferUtil.recordToRequesTemp(record));
+                redis.hset(traceID, span, TransferUtil.recordToRequesTemp(record));
             }
         }
         else
         {
-            RedisUtil.hset(traceID, span, TransferUtil.recordToRequesTemp(record));
-            RedisUtil.expire(traceID, WasherGobal.CACHE_TIME_OUT);
+            redis.hset(traceID, span, TransferUtil.recordToRequesTemp(record));
+            redis.expire(traceID, WasherGobal.CACHE_TIME_OUT);
         }
     }
 }
