@@ -1,4 +1,4 @@
-package com.swpu.DubboMonitor.record;
+package com.swpu.DubboMonitor.utils;
 
 
 import java.io.ByteArrayInputStream;
@@ -6,7 +6,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+
 import org.springframework.util.StringUtils;
+
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
@@ -45,7 +47,7 @@ public class RedisUtil
      * 
      * @return
      */
-    public void getJedis()
+    public void initJedisPool()
     {
         try
         {
@@ -61,7 +63,14 @@ public class RedisUtil
             e.printStackTrace();
         }
     }
-
+    public Jedis getJedis()
+    {
+        if(jedisPool != null)
+        {
+            return jedisPool.getResource();
+        }
+        return null;
+    }
     /**
      * 释放jedis资源
      * 
@@ -121,7 +130,7 @@ public class RedisUtil
             {
                 byte[] bytes;
                 Jedis resource = jedisPool.getResource();
-                bytes = resource.lpop(key.getBytes());
+                bytes = resource.lpop(serialize(key));
                 returnResource(resource);
                 if (bytes != null && bytes.length > 0)
                 {
@@ -137,13 +146,23 @@ public class RedisUtil
         }
         return null;
     }
-
+    public void listRightPush(String key, Object object)
+    {
+        if (!StringUtils.isEmpty(key) && object != null)
+        {
+            byte[] bytes = serialize(object);
+            Jedis resource = jedisPool.getResource();
+            resource.rpush(serialize(key), bytes);
+            returnResource(resource);
+        }
+    }
+    
     public boolean exists(String key)
     {
         if (!StringUtils.isEmpty(key))
         {
             Jedis resource = jedisPool.getResource();
-            boolean flag = resource.exists(key);
+            boolean flag = resource.exists(serialize(key));
             returnResource(resource);
             return flag;
         }
@@ -153,9 +172,9 @@ public class RedisUtil
     public void expire(String key, int seconds)
     {
         Jedis resource = jedisPool.getResource();
-        if (resource.exists(key))
+        if (resource.exists(serialize(key)))
         {
-            resource.expire(key, seconds);
+            resource.expire(serialize(key), seconds);
         }
         returnResource(resource);
     }
@@ -190,14 +209,16 @@ public class RedisUtil
         return null;
     }
 
-    public void listRightPush(String key, Object object)
+
+    public Long lsize(String key)
     {
-        if (!StringUtils.isEmpty(key) && object != null)
+        if (!StringUtils.isEmpty(key))
         {
-            byte[] bytes = serialize(object);
             Jedis resource = jedisPool.getResource();
-            resource.rpush(serialize(key), bytes);
+            Long size = resource.llen(serialize(key));
             returnResource(resource);
+            return size;
         }
+        return (long) 0;
     }
 }

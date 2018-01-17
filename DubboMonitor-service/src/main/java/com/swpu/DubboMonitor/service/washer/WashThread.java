@@ -1,7 +1,8 @@
 package com.swpu.DubboMonitor.service.washer;
 
 
-import org.apache.commons.lang.StringUtils;
+import org.springframework.util.StringUtils;
+
 import com.swpu.DubboMonitor.core.dto.Record;
 
 /**
@@ -36,7 +37,7 @@ public class WashThread implements Runnable
                 if (record != null)
                 {
                     String combineKey = record.getTraceID() + record.getSpan();
-                    if (!StringUtils.isBlank(record.getMethodName()))
+                    if (!StringUtils.isEmpty(record.getMethodName()))
                     {
                         if (record.getMethodName().matches("httpUse.*"))
                         {

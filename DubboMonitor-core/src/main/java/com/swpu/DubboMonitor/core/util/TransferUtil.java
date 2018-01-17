@@ -83,7 +83,7 @@ public class TransferUtil
         BeanUtils.copyProperties(record, methodTemp);
         methodTemp.setId(UUID.randomUUID().toString().replaceAll("-", "").toLowerCase());
         methodTemp.setRequestId(record.getTraceID());
-        methodTemp.setRpcUse((record.isRpcUse()==true)?"1":"0");
+        methodTemp.setRpcUse((record.getRpcUse()==true)?"1":"0");
         if(record.getResult()!=null){
             methodTemp.setResult(record.getResult().toString());
         }
@@ -116,7 +116,7 @@ public class TransferUtil
         requestTemp.setRequestId(record.getTraceID());
         requestTemp.setAppId(record.getAppID());
         requestTemp.setAppName(record.getAppName());
-        if(record.isUseFlag()){
+        if(record.getUseFlag()){
             requestTemp.setUrl(record.getClassName());
             requestTemp.setRequestMethod(record.getThreadNum());
         }
@@ -130,7 +130,7 @@ public class TransferUtil
      * @return RequestTemp
      */
     public static RequestTemp transferRequestTemp(RequestTemp requestTemp,Record record){
-        if(!requestTemp.isUseFlag()){
+        if(!requestTemp.getUseFlag()){
             requestTemp.setUrl(record.getClassName());
             requestTemp.setRequestMethod(record.getThreadNum());
         }

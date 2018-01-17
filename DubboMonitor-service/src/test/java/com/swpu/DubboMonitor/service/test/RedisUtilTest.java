@@ -12,7 +12,7 @@ public class RedisUtilTest
     @Test
     public void redisTest(){
         RedisUtil redisUtil = new RedisUtil();
-        redisUtil.getJedis();
+        redisUtil.initJedisPool();
         redisUtil.hset("123456", "1", "dengyu");
         redisUtil.listRightPush("12345", "dengyu");
         String vString = (String)redisUtil.hget("123456", "1");

@@ -31,7 +31,7 @@ public class BeanUtils
                     if(type.equals(typeT) && targetFields[j] == resourcesFields[i])
                     {
                         String methodName = changeFirstLetter(targetFields[j]);
-                        if(StringUtils.isEmpty(methodName)){
+                        if(StringUtils.isEmpty(methodName) || "SerialVersionUID".equals(methodName)){
                             continue;
                         }
                         try

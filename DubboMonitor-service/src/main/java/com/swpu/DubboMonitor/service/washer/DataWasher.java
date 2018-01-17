@@ -1,7 +1,8 @@
 package com.swpu.DubboMonitor.service.washer;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
+
 import com.swpu.DubboMonitor.core.MethodManager;
 import com.swpu.DubboMonitor.core.RequestManager;
 import com.swpu.DubboMonitor.core.dto.MethodTemp;
@@ -55,7 +56,7 @@ public class DataWasher
                     }
                 }
                 temp = TransferUtil.transferMethodTemp(temp, record);
-                if(!StringUtils.isBlank(temp.getClassName()) && temp.getClassName().equals("SQL USE"))
+                if(!StringUtils.isEmpty(temp.getClassName()) && temp.getClassName().equals("SQL USE"))
                 {
                     String tempStr = temp.getMethodName().replaceAll("\\s+", " ");
                     temp.setMethodName(tempStr);

@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import com.swpu.DubboMonitor.core.dto.Record;
 import com.swpu.DubboMonitor.service.common.WasherGobal;
@@ -84,7 +84,7 @@ public class RepositoryUtil
             {
                 synchronized (RepositoryUtil.class)
                 {
-                    if(StringUtils.isBlank(record.getTraceID()) || StringUtils.isBlank(record.getSpan()))
+                    if(StringUtils.isEmpty(record.getTraceID()) || StringUtils.isEmpty(record.getSpan()))
                     {
                         continue;
                     }

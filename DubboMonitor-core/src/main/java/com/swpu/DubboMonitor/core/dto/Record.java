@@ -96,7 +96,7 @@ public class Record implements Serializable{
 		this.threadNum = threadNum;
 	}
 
-	public boolean isRpcUse() {
+	public boolean getRpcUse() {
 		return rpcUse;
 	}
 
@@ -112,7 +112,7 @@ public class Record implements Serializable{
 		this.result = result;
 	}
 
-	public boolean isUseFlag() {
+	public boolean getUseFlag() {
 		return useFlag;
 	}
 

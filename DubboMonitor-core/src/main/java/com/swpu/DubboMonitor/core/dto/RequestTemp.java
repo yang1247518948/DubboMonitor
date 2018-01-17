@@ -134,7 +134,7 @@ public class RequestTemp implements Serializable
         this.time = time;
     }
 
-    public boolean isUseFlag()
+    public boolean getUseFlag()
     {
         return useFlag;
     }

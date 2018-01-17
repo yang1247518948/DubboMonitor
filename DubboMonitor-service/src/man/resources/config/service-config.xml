@@ -26,5 +26,5 @@
 	<bean id="dataWasher" class="com.swpu.DubboMonitor.service.washer.DataWasher" />      
 	<bean id="repositoryUtil" class="com.swpu.DubboMonitor.service.washer.RepositoryUtil" /> 
 	<bean id="initThread" class="com.swpu.DubboMonitor.service.washer.beans.InitWasher" init-method="begin" />
-	<bean id="initRedis" class="com.swpu.DubboMonitor.service.util.RedisUtil" init-method="getJedis"></bean>
+	<bean id="initRedis" class="com.swpu.DubboMonitor.service.util.RedisUtil" init-method="initJedisPool"></bean>
 </beans>
