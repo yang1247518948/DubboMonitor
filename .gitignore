@@ -40,17 +40,17 @@ hs_err_pid*
 
 # IntelliJ project files
 ../.idea
-.idea/dlmonitor.iml
+.idea/DubboMonitor.iml
 out
 gen
 /.idea/
-/dlmonitor/dlmonitormain.iml
-/dlmonitor/.idea/
-/dlmonitor/dlmonitor.iml
-/dlmonitor-core/target/
-/dlmonitor-persist/target/
-/dlmonitor-services/target/
-/dlmonitor-web/target/
+/DubboMonitor/DubboMonitormain.iml
+/DubboMonitor/.idea/
+/DubboMonitor/dlmonitor.iml
+/DubboMonitor-core/target/
+/DubboMonitor-persist/target/
+/DubboMonitor-services/target/
+/DubboMonitor-web/target/
 .settings/
 .project
 .classpath

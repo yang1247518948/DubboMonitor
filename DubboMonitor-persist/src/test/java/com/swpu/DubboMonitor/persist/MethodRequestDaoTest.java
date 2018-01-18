@@ -21,13 +21,13 @@ public class MethodRequestDaoTest
     public void selectByRequestIDTest()
     {
         String requestId = "s545s6";
-        List<MethodRequestEntity> methods = methodRequestDao.selectMethodListByRequestID(requestId);
-        for (MethodRequestEntity methodRequestEntity : methods)
-        {
-            System.out.println(methodRequestEntity.toString());
-        }
+//        List<MethodRequestEntity> methods = methodRequestDao.selectMethodListByRequestID(requestId);
+//        for (MethodRequestEntity methodRequestEntity : methods)
+//        {
+//            System.out.println(methodRequestEntity.toString());
+//        }
     }
-
+/*
     @Test
     public void selectMethodByIdTest()
     {
@@ -36,6 +36,6 @@ public class MethodRequestDaoTest
         Assert.assertNotNull(methodEntity);
         System.out.println(methodEntity.toString());
         
-    }
+    }*/
 
 }

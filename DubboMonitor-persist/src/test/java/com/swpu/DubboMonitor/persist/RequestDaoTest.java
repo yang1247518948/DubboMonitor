@@ -34,7 +34,7 @@ public class RequestDaoTest
 
     @Autowired
     private RequestDao requestDao;
-
+/*
     @Test
     public void insert_test()
     {
@@ -71,16 +71,16 @@ public class RequestDaoTest
         requestEntity.setParentId("12121");
         Assert.assertEquals(1, requestDao.insertSelective(requestEntity));
     }
-
+*/
     @Test
     public void selectByPrimaryKey_test()
     {
         String requestId = "sss52222222222";
         String appId = "1111";
-        RequestEntity requestEntity = requestDao.selectByPrimaryKey(requestId,appId);
-        System.out.println(new Gson().toJson(requestEntity));
+//        RequestEntity requestEntity = requestDao.selectByPrimaryKey(requestId,appId);
+//        System.out.println(new Gson().toJson(requestEntity));
     }
-
+/*
     @Test
     public void insertBatch_test()
     {
@@ -188,5 +188,5 @@ public class RequestDaoTest
         Assert.assertNotEquals(0, requestDao.countAllRequestsByParams(map));
         System.out.println(requestDao.countAllRequestsByParams(map));
     }
-    
+    */
 }
