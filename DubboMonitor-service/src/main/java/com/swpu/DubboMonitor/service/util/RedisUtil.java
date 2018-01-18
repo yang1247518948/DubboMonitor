@@ -39,7 +39,7 @@ public class RedisUtil
 
     private JedisPool jedisPool = null;
 
-   // private Jedis resource = null;
+    // private Jedis resource = null;
 
     /**
      * 初始化连接池，并获取Jedis实例
@@ -62,14 +62,16 @@ public class RedisUtil
             e.printStackTrace();
         }
     }
+
     public Jedis getJedis()
     {
-        if(jedisPool != null)
+        if (jedisPool != null)
         {
             return jedisPool.getResource();
         }
         return null;
     }
+
     /**
      * 释放jedis资源
      * 
@@ -145,6 +147,7 @@ public class RedisUtil
         }
         return null;
     }
+
     public void listRightPush(String key, Object object)
     {
         if (!StringUtils.isEmpty(key) && object != null)
@@ -155,7 +158,7 @@ public class RedisUtil
             returnResource(resource);
         }
     }
-    
+
     public boolean exists(String key)
     {
         if (!StringUtils.isEmpty(key))
@@ -207,7 +210,6 @@ public class RedisUtil
         }
         return null;
     }
-
 
     public Long lsize(String key)
     {
