@@ -39,16 +39,16 @@ public class XMLReader {
 			NodeList classNames = doc.getElementsByTagName("Ignore");
 			NodeList allList = doc.getElementsByTagName("Add");
 
-			NodeList addressNode = doc.getElementsByTagName("CodisAddress");
-			NodeList pathNode = doc.getElementsByTagName("CodisPath");
-			NodeList sessionTimeoutNode = doc.getElementsByTagName("CodisTimeout");
-
-			if(addressNode!=null&&pathNode!=null&&sessionTimeoutNode!=null) {
-				String address = addressNode.item(0).getFirstChild().getNodeValue();
-				String path = pathNode.item(0).getFirstChild().getNodeValue();
-				String sessionTimeout = sessionTimeoutNode.item(0).getFirstChild().getNodeValue();
-				System.out.println(address+path+sessionTimeout);
-			}
+//			NodeList addressNode = doc.getElementsByTagName("CodisAddress");
+//			NodeList pathNode = doc.getElementsByTagName("CodisPath");
+//			NodeList sessionTimeoutNode = doc.getElementsByTagName("CodisTimeout");
+//
+//			if(addressNode!=null&&pathNode!=null&&sessionTimeoutNode!=null) {
+//				String address = addressNode.item(0).getFirstChild().getNodeValue();
+//				String path = pathNode.item(0).getFirstChild().getNodeValue();
+//				String sessionTimeout = sessionTimeoutNode.item(0).getFirstChild().getNodeValue();
+//				System.out.println(address+path+sessionTimeout);
+//			}
 
 
 			for(int i=0;i<classNames.getLength();i++){
