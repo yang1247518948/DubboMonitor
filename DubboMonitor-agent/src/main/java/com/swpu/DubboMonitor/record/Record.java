@@ -129,6 +129,9 @@ public class Record {
 	public void setAppName(String appName) {
 		this.appName = appName;
 	}
-
+	@Override
+	public String toString(){
+	    return "traceID="+getTraceID()+",span="+getSpan()+",classname="+getClassName()+",methodName="+getMethodName();
+	}
 	//	private String
 }

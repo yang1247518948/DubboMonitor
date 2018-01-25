@@ -1,8 +1,8 @@
 package com.swpu.DubboMonitor.utils;
 
-import comswpu.DubboMonitor.traceClass.Trace;
-
 import org.apache.commons.lang.StringUtils;
+
+import com.swpu.DubboMonitor.traceClass.Trace;
 
 public class SpanUtils {
 

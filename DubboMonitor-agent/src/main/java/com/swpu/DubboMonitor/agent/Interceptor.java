@@ -2,10 +2,9 @@ package com.swpu.DubboMonitor.agent;
 
 import com.swpu.DubboMonitor.record.Collector;
 import com.swpu.DubboMonitor.record.Record;
+import com.swpu.DubboMonitor.traceClass.Trace;
 import com.swpu.DubboMonitor.utils.SpanUtils;
 import com.swpu.DubboMonitor.utils.UID;
-
-import comswpu.DubboMonitor.traceClass.Trace;
 
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;

@@ -106,7 +106,9 @@ public class Collector {
 				}
 
 				while (!readQueue.isEmpty()){
-					redis.listRightPush(CODIS_KEY,readQueue.poll());
+				    Record record = readQueue.poll();
+				    logger.info(record.toString());
+					redis.listRightPush(CODIS_KEY,record);
 				}
 
 				if(writeToOne){

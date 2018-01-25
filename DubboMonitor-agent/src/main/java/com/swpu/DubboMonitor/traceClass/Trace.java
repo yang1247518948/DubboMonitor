@@ -1,4 +1,4 @@
-package comswpu.DubboMonitor.traceClass;
+package com.swpu.DubboMonitor.traceClass;
 
 public class Trace {
 	public String traceId;
