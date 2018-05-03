@@ -15,8 +15,8 @@
 	                    http://www.springframework.org/schema/tool/spring-tool-4.0.xsd">
 
 	
-	<bean id="requestManager" class="com.swpu.DubboMonitor.core.impl.RequestManagerImpl"/>
-	<bean id="methodManager" class="com.swpu.DubboMonitor.core.impl.MethodManagerImpl" />
-	<bean id="methodRequestManager" class="com.swpu.DubboMonitor.core.impl.MethodRequestManagerImpl" init-method="start"/>
+	<bean id="requestManager" class="com.yang.monitor.core.impl.RequestManagerImpl"/>
+	<bean id="methodManager" class="com.yang.monitor.core.impl.MethodManagerImpl" />
+	<bean id="methodRequestManager" class="com.yang.monitor.core.impl.MethodRequestManagerImpl" init-method="start"/>
 
 </beans>

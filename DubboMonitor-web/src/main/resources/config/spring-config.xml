@@ -22,7 +22,7 @@
 	</bean>
 	<mvc:resources mapping="/resources/**" location="/WEB-INF/template/resources/" />
 	
-	<mvc:annotation-driven content-negotiation-manager="contentNegotiationManager">
+	<mvc:annotation-driven>
 		<mvc:message-converters >
 			<bean id="jsonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
 				<property name="supportedMediaTypes">
@@ -45,12 +45,12 @@
 	<!-- 开启自动切面代理 -->
 	<aop:aspectj-autoproxy />
 	
-	<context:component-scan base-package="com.swpu.DubboMonitor">
+	<context:component-scan base-package="com.yang.monitor">
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 	
 	<!-- 自动搜索@Controller标注的类 -->
-	<context:component-scan base-package="com.swpu.DubboMonitor.controller">
+	<context:component-scan base-package="com.yang.monitor.controller">
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>

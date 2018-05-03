@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.swpu.DubboMonitor.persist.dao.MethodRequestDao">
+<mapper namespace="com.yang.monitor.persist.dao.MethodRequestDao">
 	<resultMap id="ResultMap"
-		type="com.swpu.DubboMonitor.persist.entity.MethodRequestEntity">
+		type="com.yang.monitor.persist.entity.MethodRequestEntity">
 		<id column="id" jdbcType="VARCHAR" property="id" />
 		<result column="method_name" jdbcType="VARCHAR" property="methodName" />
 		<result column="class_name" jdbcType="VARCHAR" property="className" />

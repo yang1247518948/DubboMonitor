@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.swpu.DubboMonitor.persist.dao.MethodDao">
-  <resultMap id="MethodInfoResultMap" type="com.swpu.DubboMonitor.persist.entity.MethodEntity">
+<mapper namespace="com.yang.monitor.persist.dao.MethodDao">
+  <resultMap id="MethodInfoResultMap" type="com.yang.monitor.persist.entity.MethodEntity">
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="method_name" jdbcType="VARCHAR" property="methodName" />
     <result column="class_name" jdbcType="VARCHAR" property="className" />
@@ -43,7 +43,7 @@
     where id = #{id,jdbcType=VARCHAR}
   </delete>
 
-<update id="updateByPrimaryKey" parameterType="com.swpu.DubboMonitor.persist.entity.MethodEntity">
+<update id="updateByPrimaryKey" parameterType="com.yang.monitor.persist.entity.MethodEntity">
 		update methods
 		set 
 		parent_id = #{parentId,jdbcType=VARCHAR},
@@ -51,7 +51,7 @@
 		where id = #{id,jdbcType=VARCHAR}
 	</update>
 	
-  <insert id="insert" parameterType="com.swpu.DubboMonitor.persist.entity.MethodEntity">
+  <insert id="insert" parameterType="com.yang.monitor.persist.entity.MethodEntity">
     insert into methods (id, method_name, class_name,
       request_id, start_time, run_time,
       parent_id, thread_num, rpc_use,
@@ -62,7 +62,7 @@
       #{parentId,jdbcType=VARCHAR}, #{threadNum,jdbcType=VARCHAR}, #{rpcUse,jdbcType=VARCHAR},
       #{result,jdbcType=VARCHAR}, NOW(), NOW(), #{appId,jdbcType=VARCHAR},#{appName,jdbcType=VARCHAR},#{span,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.swpu.DubboMonitor.persist.entity.MethodEntity">
+  <insert id="insertSelective" parameterType="com.yang.monitor.persist.entity.MethodEntity">
     insert into methods
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.swpu.DubboMonitor.persist.dao.RequestDao">
+<mapper namespace="com.yang.monitor.persist.dao.RequestDao">
 
 	<resultMap id="RequestInfoResultMap"
-		type="com.swpu.DubboMonitor.persist.entity.RequestEntity">
+		type="com.yang.monitor.persist.entity.RequestEntity">
 		<id column="request_id" property="requestId" jdbcType="VARCHAR" />
 		<id column="app_id" property="appId" jdbcType="VARCHAR" />
 		<result column="app_name" property="appName" jdbcType="VARCHAR" />
@@ -58,7 +58,7 @@
 		where request_id = #{requestId,jdbcType=VARCHAR} and app_id =
 		#{appId,jdbcType=VARCHAR}
 	</delete>
-	<insert id="insert" parameterType="com.swpu.DubboMonitor.persist.entity.RequestEntity">
+	<insert id="insert" parameterType="com.yang.monitor.persist.entity.RequestEntity">
 		insert into requests
 		(request_id, app_id, app_name,
 		parent_id, url, request_method,
@@ -76,7 +76,7 @@
 		NOW(),NOW()),
 		#{span,jdbcType=VARCHAR},
 	</insert>
-	<insert id="insertSelective" parameterType="com.swpu.DubboMonitor.persist.entity.RequestEntity">
+	<insert id="insertSelective" parameterType="com.yang.monitor.persist.entity.RequestEntity">
 		insert into requests
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="requestId != null">
@@ -145,7 +145,7 @@
 			NOW(),NOW()
 		</trim>
 	</insert>
-	<update id="updateByPrimaryKeySelective" parameterType="com.swpu.DubboMonitor.persist.entity.RequestEntity">
+	<update id="updateByPrimaryKeySelective" parameterType="com.yang.monitor.persist.entity.RequestEntity">
 		update requests
 		<set>
 			<if test="appName != null">
@@ -177,7 +177,7 @@
 		where request_id = #{requestId,jdbcType=VARCHAR} and app_id =
 		#{appId,jdbcType=VARCHAR};
 	</update>
-	<update id="updateByPrimaryKey" parameterType="com.swpu.DubboMonitor.persist.entity.RequestEntity">
+	<update id="updateByPrimaryKey" parameterType="com.yang.monitor.persist.entity.RequestEntity">
 		update requests
 		set
 		app_name = #{appName,jdbcType=VARCHAR},

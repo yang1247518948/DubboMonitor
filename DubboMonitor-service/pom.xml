@@ -4,7 +4,7 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.swpu</groupId>
+		<groupId>com.yang</groupId>
 		<artifactId>DubboMonitor</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
@@ -17,7 +17,7 @@
 	</properties>
 	<dependencies>
 		<dependency>
-			<groupId>com.swpu</groupId>
+			<groupId>com.yang</groupId>
 			<artifactId>DubboMonitor-core</artifactId>
 			<version>${project.version}</version>
 		</dependency>
@@ -31,6 +31,12 @@
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
 			<version>1.2.28</version>
+		</dependency>
+		<dependency>
+			<groupId>com.yang</groupId>
+			<artifactId>DubboMonitor-agent</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 </project>
