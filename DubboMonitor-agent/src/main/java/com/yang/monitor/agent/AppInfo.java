@@ -40,6 +40,7 @@ public class AppInfo {
 		blackList.add("com.danlu.dlhttpx.util.*");
 		blackList.add("com.danlu.dlhttpx.HttpExtractor.*");
 		blackList.add("com.danlu.dlcodis.I.*");
+		blackList.add("com.yang.monitor.core.util.*");
 	}
 
 	public String getAppName(){

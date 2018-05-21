@@ -4,9 +4,9 @@ package com.yang.monitor.service.washer;
 import com.yang.monitor.core.MethodManager;
 import com.yang.monitor.core.RequestManager;
 import com.yang.monitor.core.dto.MethodTemp;
-import com.yang.monitor.core.dto.Record;
 import com.yang.monitor.core.dto.RequestTemp;
 import com.yang.monitor.core.util.TransferUtil;
+import com.yang.monitor.record.Record;
 import com.yang.monitor.service.common.WasherGobal;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author: yangping
  * @Date:2017年11月22日
  */
-public class DataWasher
-{
+public class DataWasher {
     @Autowired
     MethodManager methodManager;
 
@@ -31,24 +30,20 @@ public class DataWasher
      * 处理方法打印的日志
      * @param record 日志
      */
-    public void dealOneRecord(Record record)
-    {
+    public void dealOneRecord(Record record) {
         MethodTemp temp = null;
         boolean flag=false;
         String span = record.getSpan();
         String traceID = record.getTraceID();
 
         temp = service.getMethod(traceID+span);
-        if (temp != null)
-        {
+        if (temp != null) {
 
             int index = span.lastIndexOf('.');
-            if (index != -1 && span.substring(0, index).indexOf('.') != -1)
-            {
+            if (index != -1 && span.substring(0, index).indexOf('.') != -1) {
                 String parentSpan = span.substring(0, index);
                 MethodTemp tempParen = service.getMethod(traceID+parentSpan);
-                if (tempParen != null)
-                {
+                if (tempParen != null) {
                     temp.setParentId(tempParen.getId());
                 }
                 else {
@@ -82,14 +77,11 @@ public class DataWasher
         boolean flag = false;
         String traceID = record.getTraceID();
         temp = service.getRequest(traceID+span);
-        if (temp != null)
-        {
-            if (span.indexOf('.') != -1)
-            {
+        if (temp != null) {
+            if (span.indexOf('.') != -1) {
                 span = span.substring(4);
                 MethodTemp tempParen = service.getMethod(traceID+span);
-                if (tempParen != null)
-                {
+                if (tempParen != null) {
                     temp.setParentId(tempParen.getAppId());
                 } else {
                     flag=true;

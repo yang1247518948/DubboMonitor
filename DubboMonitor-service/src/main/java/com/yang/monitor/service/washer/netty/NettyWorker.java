@@ -17,7 +17,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
  * @date 2017.12.25 15:32
  **/
 public class NettyWorker implements Runnable {
-	private int port = 8000;
+	private int port = 13103;
 
 	@Override
 	public void run() {

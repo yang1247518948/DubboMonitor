@@ -6,7 +6,9 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.google.gson.Gson;
 import com.yang.monitor.core.dto.MethodDTO;
+import com.yang.monitor.record.Record;
 import com.yang.monitor.util.ResultUtil;
 import com.yang.monitor.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,5 +99,18 @@ public class MethodController
             e.printStackTrace();
             return ResultUtil.failure(-2, "系统错误");
         }
+    }
+
+    @RequestMapping(value = "/test")
+    @ResponseBody
+    public Record test(){
+        Gson gson = new Gson();
+        Record record = new Record();
+        record.setSpan("1,1");
+        record.setAppID("dadfsafd");
+        for (int i = 0;i < 10;i++) {
+            gson.toJson(record);
+        }
+        return record;
     }
 }

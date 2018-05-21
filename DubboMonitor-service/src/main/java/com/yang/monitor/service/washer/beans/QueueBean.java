@@ -1,8 +1,7 @@
 package com.yang.monitor.service.washer.beans;
 
 
-
-import com.yang.monitor.core.dto.Record;
+import com.yang.monitor.record.Record;
 
 import java.io.Serializable;
 import java.util.concurrent.ConcurrentLinkedQueue;

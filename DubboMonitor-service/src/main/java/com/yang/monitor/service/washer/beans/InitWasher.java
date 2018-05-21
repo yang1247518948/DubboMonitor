@@ -38,15 +38,13 @@ public class InitWasher
     public void begin() throws Exception {
 
         System.out.print("aaaaaaaa");
-        try
-        {
+        try {
 //
             System.out.print("aaaaaaa");
             new Thread(new NettyWorker()).start();
             ExecutorService pool = Executors.newFixedThreadPool(WasherGobal.THREAD_COUNT);
 //
-                for (int i = 0; i < 5; i++)
-                {
+                for (int i = 0; i < 5; i++) {
                     pool.execute(new Thread(new WashThread(dataWasher,repositoryUtil)));
 
                 }
@@ -55,8 +53,7 @@ public class InitWasher
             File file = new File(getStoragePath());
             System.out.print(file.canWrite());
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             System.out.println("线程启动失败!!");
             e.printStackTrace();
         }

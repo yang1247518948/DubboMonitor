@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  * 拦截其中插入的各项方法
- * @see com.danlu.dlmonitor.transation.ClassTransformer#transform
+ * @see com.yang.monitor.transation.ClassTransformer#transform
  */
 public class Interceptor {
     private static ThreadLocal<Trace> data;
@@ -27,10 +27,10 @@ public class Interceptor {
     /**
      * 非http方式的初始化，比如新建线程方式
      */
-    public static void start(){
+    public static void start() {
         logger.debug("Non Request usr start");
 
-        if(data==null){
+        if(data == null) {
             data = new ThreadLocal<>();
         }
 
@@ -44,10 +44,10 @@ public class Interceptor {
      * @param name 方法名
      * @param className 类名
      */
-    public static void use(String name,String className){
+    public static void use(String name,String className) {
 
 
-        if(data==null||data.get()==null){
+        if (data == null || data.get() == null) {
             return;
         }
         logger.debug("use start");
@@ -64,9 +64,9 @@ public class Interceptor {
      * @param name 方法名
      * @param className 类名
      */
-    public static void beforeReturn(String name,String className){
+    public static void beforeReturn(String name,String className) {
 
-        if(data==null||data.get()==null){
+        if (data == null || data.get() == null) {
             return;
         }
 
@@ -79,21 +79,21 @@ public class Interceptor {
     }
 
     public static String getTraceId(){
-        if(data==null||data.get()==null){
+        if (data == null || data.get() == null) {
             return null;
         }
         return data.get().traceId;
     }
 
     public static String getSpan(){
-        if(data==null||data.get()==null){
+        if (data == null || data.get() == null) {
             return null;
         }
         return data.get().span;
     }
 
     public static int getRemainder(){
-        if(data==null||data.get()==null){
+        if (data == null || data.get() == null) {
             return 0;
         }
         return data.get().remainder;
@@ -101,7 +101,7 @@ public class Interceptor {
 
 
     public static String getAppId(){
-        if(data==null||data.get()==null){
+        if (data == null || data.get() == null) {
             return null;
         }
         return data.get().appId;

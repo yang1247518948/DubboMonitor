@@ -1,6 +1,6 @@
 package com.yang.monitor.service.washer;
 
-import com.yang.monitor.core.dto.Record;
+import com.yang.monitor.record.Record;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
@@ -15,9 +15,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  * @author: yangping
  * @Date:2017年11月22日
  */
-public class RepositoryUtil
-{
-
+public class RepositoryUtil {
 
     private EHCacheService service = EHCacheService.getInstance();
 
@@ -31,20 +29,14 @@ public class RepositoryUtil
      * 遍历list，如果没有冲突，返回一条日志，如果有就从codis中取出一条日志返回
      * @return Record
      */
-    public Record getRecord()
-    {
-        try
-        {
-            if (!CollectionUtils.isEmpty(records))
-            {
-                synchronized (RepositoryUtil.class)
-                {
-                    for (int i = 0; i < records.size(); i++)
-                    {
+    public Record getRecord() {
+        try {
+            if (!CollectionUtils.isEmpty(records)) {
+                synchronized (RepositoryUtil.class) {
+                    for (int i = 0; i < records.size(); i++) {
                         Record record = records.get(i);
                         String combineKey = record.getTraceID() + record.getSpan();
-                        if (!keySets.contains(combineKey))
-                        {
+                        if (!keySets.contains(combineKey)) {
                             keySets.add(combineKey);
                             records.remove(record);
                             return record;
@@ -54,8 +46,7 @@ public class RepositoryUtil
             }
             return getRecordFromEhcache();
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             e.printStackTrace();
         }
         return null;
@@ -75,8 +66,7 @@ public class RepositoryUtil
      * 从内存的队列中取出一条日志，如果该日志的trace和span组成的联合主键在keySet中存在，则将这条日志放到list中去，然后继续从enCache中取，直到取出一条日志为止
      * @return Record
      */
-    private Record getRecordFromEhcache()
-    {
+    private Record getRecordFromEhcache() {
         Record record = null;
 
         try {

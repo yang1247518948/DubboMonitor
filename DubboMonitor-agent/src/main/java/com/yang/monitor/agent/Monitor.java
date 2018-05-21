@@ -10,10 +10,8 @@ import java.lang.instrument.Instrumentation;
 
 public class Monitor {
 
-    private static Logger logger = LoggerFactory.getLogger(Monitor.class);
-
     public static void premain(String agentOps, Instrumentation inst) throws Exception {
-        if(System.getProperty("agent.appName")==null){
+        if(System.getProperty("agent.appName") == null) {
             throw new Exception("Failed to get AppName, Please add your app name in VM options by using \"-Dagent.appName=\"");
         }
 

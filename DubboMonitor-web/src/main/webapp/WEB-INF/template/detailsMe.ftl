@@ -23,10 +23,7 @@
 		</tr>
 	</table>
 </div>
-	<div id="footer">
-    <p>Copyright ©  All Rights Reserved.</p>
-    <p>西南石油大学计科院 版权所有</p>
-    <p>四川省 成都市 新都大道8号</p>
+
 </footer>
 </body>
 <script type="text/javascript">

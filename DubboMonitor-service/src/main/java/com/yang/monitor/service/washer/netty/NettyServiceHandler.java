@@ -1,8 +1,8 @@
 package com.yang.monitor.service.washer.netty;
 
 
-import com.yang.monitor.core.dto.Record;
 import com.yang.monitor.netty.ClientInfo;
+import com.yang.monitor.record.Record;
 import com.yang.monitor.service.washer.EHCacheService;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
@@ -41,9 +41,6 @@ public class NettyServiceHandler extends SimpleChannelInboundHandler {
 		String id = ctx.channel().id().asLongText();
 		ClientService.addChannel(id,channel);
 
-
-//		ctx.writeAndFlush(NettyMessageType.AGENT_CLOSE_MESSAGE);
-//		ctx.writeAndFlush(NettyMessageType.AGENT_OPEN_MESSAGE);
 	}
 
 }

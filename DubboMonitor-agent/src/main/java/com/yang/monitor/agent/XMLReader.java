@@ -39,8 +39,6 @@ public class XMLReader {
 			NodeList classNames = doc.getElementsByTagName("Ignore");
 			NodeList allList = doc.getElementsByTagName("Add");
 
-
-
 			for(int i=0;i<classNames.getLength();i++){
 				info.addBlackListItem(classNames.item(i).getFirstChild().getNodeValue()+".*");
 			}

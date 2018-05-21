@@ -1,5 +1,7 @@
 package com.yang.monitor.controller;
 
+import com.google.gson.Gson;
+import com.yang.monitor.record.Record;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,6 +35,7 @@ public class DispacherController
         ModelAndView mav = new ModelAndView("notFound");
         return mav;
     }
+
     
     /**
      * 跳转到请求详情页

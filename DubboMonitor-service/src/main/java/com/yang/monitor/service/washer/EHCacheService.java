@@ -1,11 +1,10 @@
 package com.yang.monitor.service.washer;
 
 
-
 import com.yang.monitor.core.dto.MethodTemp;
-import com.yang.monitor.core.dto.Record;
 import com.yang.monitor.core.dto.RequestTemp;
 import com.yang.monitor.core.util.TransferUtil;
+import com.yang.monitor.record.Record;
 import com.yang.monitor.service.washer.beans.QueueBean;
 import org.ehcache.Cache;
 import org.ehcache.PersistentCacheManager;
@@ -89,6 +88,9 @@ public class EHCacheService {
      */
     public ConcurrentLinkedQueue<Record> getQueue(){
         String name = names.poll();
+        if (name == null) {
+            return null;
+        }
         ConcurrentLinkedQueue<Record> result = recordCache.get(name).getQueue();
         recordCache.remove(name);
         return result;
