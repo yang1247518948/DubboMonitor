@@ -53,7 +53,6 @@ public class MethodRequestManagerImpl implements MethodRequestManager {
                     map.put(entity.getId(),entity);
                 }
 
-
                 for (MethodRequestEntity methodRequestEntity : methodRequestList) {
                     MethodRequestEntity parentMethod = map
                             .get(methodRequestEntity.getParentId());
